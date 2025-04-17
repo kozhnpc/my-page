@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K-网站导航</title>
+  
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="导航">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  <!-- 引入Element Plus图标 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
+  <!-- 引入FontAwesome图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <style>
+    :root {
+      --primary-color: #409eff;
+      --hover-color: #79bbff;
+      --active-color: #337ecc;
+      --light-bg: #f5f7fa;
+      --card-bg: #ffffff;
+      --text-color: #303133;
+      --secondary-text: #606266;
+      --border-color: #dcdfe6;
+      --box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      --transition-time: 0.3s;
+      --border-radius: 8px;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      transition: background-color var(--transition-time);
+      background-image: linear-gradient(135deg, rgba(64, 158, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 20px 0;
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease-out;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h1::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: var(--primary-color);
+      bottom: -5px;
+      left: 25%;
+      border-radius: 2px;
+    }
+    
+    header p {
+      color: var(--secondary-text);
+      max-width: 600px;
+      margin: 15px auto 0;
+    }
+    
+    .env-switcher {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      gap: 10px;
+      animation: fadeIn 1s ease-out 0.3s both;
+    }
+    
+    .env-button {
+      padding: 10px 20px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all var(--transition-time);
+      font-size: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .env-button:hover {
+      border-color: var(--hover-color);
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+    
+    .env-button::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width var(--transition-time);
+    }
+    
+    .env-button:hover::before {
+      width: 100%;
+    }
+    
+    .env-button.active {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
+    }
+    
+    .env-button.active::before {
+      display: none;
+    }
+    
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      animation: fadeIn 1s ease-out 0.5s both;
+    }
+    
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px 20px;
+      box-shadow: var(--box-shadow);
+      transition: all var(--transition-time);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-color) 0%, transparent 100%);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity var(--transition-time);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card:hover::before {
+      opacity: 0.05;
+    }
+    
+    .card-icon {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-size: 32px;
+      background-color: rgba(64, 158, 255, 0.1);
+      border-radius: 50%;
+      transition: all var(--transition-time);
+    }
+    
+    .card:hover .card-icon {
+      transform: scale(1.1);
+      background-color: rgba(64, 158, 255, 0.2);
+    }
+    
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      text-align: center;
+      transition: color var(--transition-time);
+    }
+    
+    .card:hover .card-title {
+      color: var(--primary-color);
+    }
+    
+    .card-url {
+      font-size: 14px;
+      color: var(--secondary-text);
+      word-break: break-all;
+      text-align: center;
+      transition: color var(--transition-time);
+      max-width: 100%;
+      padding: 0 10px;
+    }
+    
+    .card:hover .card-url {
+      color: var(--primary-color);
+      opacity: 0.8;
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--box-shadow);
+      transition: all var(--transition-time);
+      z-index: 10;
+      animation: fadeIn 1s ease-out 0.8s both;
+    }
+    
+    .dark-mode-toggle:hover {
+      background-color: var(--primary-color);
+      color: white;
+      transform: rotate(15deg);
+    }
+    
+    /* 动画效果 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* 暗色模式样式 */
+    body.dark-mode {
+      --light-bg: #1a1a1a;
+      --card-bg: #2c2c2c;
+      --text-color: #ffffff;
+      --secondary-text: #b0b0b0;
+      --border-color: #4c4c4c;
+      --box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+    }
+    
+    body.dark-mode {
+      background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .cards-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+      
+      .container {
+        padding: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cards-container {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .env-button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      
+      .dark-mode-toggle {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        right: 15px;
+      }
+      
+      body {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>K-网站导航</h1>
+      <p>切换网络环境，便捷访问不同网络下的服务</p>
+    </header>
+    
+    <div class="env-switcher">
+      <button class="env-button active" data-env="Local">
+        <i class="fas fa-home"></i> 本地网络
+      </button>
+      <button class="env-button" data-env="TailScale">
+        <i class="fas fa-globe"></i> TailScale
+      </button>
+    </div>
+    
+    <div class="cards-container" id="cards-container">
+      <!-- 卡片将通过JS动态生成 -->
+    </div>
+  </div>
+  
+  <button class="dark-mode-toggle" id="darkModeToggle" title="切换暗色/亮色模式">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script>
+    // 网站数据
+    const sitesData = [
+      {
+        name: "Nas媒体库",
+        icon: "<i class='fas fa-music'></i>",
+        url: {
+          Local: "http://192.168.31.123:3300",
+          TailScale: "http://100.114.93.104:3300"
+        }
+      },
+      {
+        name: "Git仓库",
+        icon: "<i class='fas fa-code-branch'></i>",
+        url: {
+          Local: "http://192.168.31.123:5010",
+          TailScale: "http://100.114.93.104:5010"
+        }
+      },
+      {
+        name: "即时通讯",
+        icon: "<i class='fas fa-comments'></i>",
+        url: {
+          Local: "http://192.168.31.123:11000",
+          TailScale: "http://100.114.93.104:11000"
+        }
+      },
+      {
+        name: "VPN配置",
+        icon: "<i class='fas fa-shield-alt'></i>",
+        url: {
+          Local: "http://192.168.31.123:2017",
+          TailScale: "http://100.114.93.104:2017"
+        }
+      },
+      {
+        name: "网盘",
+        icon: "<i class='fas fa-cloud'></i>",
+        url: {
+          Local: "http://192.168.31.123:5212",
+          TailScale: "http://100.114.93.104:5212"
+        }
+      },
+      {
+        name: "Nas首页",
+        icon: "<i class='fas fa-home'></i>",
+        url: {
+          Local: "http://192.168.31.123",
+          TailScale: "http://100.114.93.104"
+        }
+      },
+      {
+        name: "迅雷下载",
+        icon: "<i class='fas fa-bolt'></i>",
+        url: {
+          Local: "http://192.168.31.123:2345",
+          TailScale: "http://100.114.93.104:2345"
+        }
+      },
+      {
+        name: "Docker UI",
+        icon: "<i class='fab fa-docker'></i>",
+        url: {
+          Local: "http://192.168.31.123:9000",
+          TailScale: "http://100.114.93.104:9000"
+        }
+      }
+    ];
+    
+    // 当前环境
+    let currentEnv = "Local";
+    
+    // 渲染卡片
+    function renderCards() {
+      const cardsContainer = document.getElementById('cards-container');
+      cardsContainer.innerHTML = '';
+      
+      sitesData.forEach((site, index) => {
+        const card = document.createElement('a');
+        card.className = 'card';
+        card.href = site.url[currentEnv];
+        card.target = '_blank';
+        card.style.animationDelay = `${0.1 * index}s`;
+        
+        card.innerHTML = `
+          <div class="card-icon">${site.icon}</div>
+          <div class="card-title">${site.name}</div>
+          <div class="card-url">${site.url[currentEnv]}</div>
+        `;
+        
+        cardsContainer.appendChild(card);
+      });
+    }
+    
+    // 初始渲染
+    renderCards();
+    
+    // 环境切换
+    const envButtons = document.querySelectorAll('.env-button');
+    envButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // 更新按钮状态
+        envButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // 更新当前环境
+        currentEnv = button.getAttribute('data-env');
+        
+        // 重新渲染卡片
+        renderCards();
+      });
+    });
+    
+    // 暗色模式切换
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = darkModeToggle.querySelector('i');
+    
+    function updateDarkModeIcon() {
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      darkModeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      
+      // 更新图标
+      updateDarkModeIcon();
+      
+      // 保存用户偏好
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+    });
+    
+    // 初始化暗色模式
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      updateDarkModeIcon();
+    }
+    
+    // 添加键盘快捷键支持
+    document.addEventListener('keydown', (event) => {
+      // Alt + D 切换暗色模式
+      if (event.altKey && event.key === 'd') {
+        darkModeToggle.click();
+      }
+      
+      // Alt + 1 切换到本地环境
+      if (event.altKey && event.key === '1') {
+        envButtons[0].click();
+      }
+      
+      // Alt + 2 切换到TailScale环境
+      if (event.altKey && event.key === '2') {
+        envButtons[1].click();
+      }
+    });
+  </script>
+</body>
+</html> 
