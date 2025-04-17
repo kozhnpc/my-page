@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=nav.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重定向中...</title>
+  <script>
+    window.location.href = "nav.html";
+  </script>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f7fa;
+      color: #606266;
+    }
+    .loading {
+      text-align: center;
+    }
+    .loading p {
+      margin-top: 20px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      border: 3px solid rgba(64, 158, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #409eff;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading">
+    <div class="spinner"></div>
+    <p>正在跳转到导航页面...</p>
+    <p>如果没有自动跳转，请<a href="nav.html">点击此处</a></p>
+  </div>
+</body>
+</html>
