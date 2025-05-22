@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23409eff' d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简易导航</title>
+  
+  <!-- 引入FontAwesome图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <style>
+    :root {
+      --primary-color: #409eff;
+      --hover-color: #79bbff;
+      --active-color: #337ecc;
+      --light-bg: #f5f7fa;
+      --card-bg: #ffffff;
+      --text-color: #303133;
+      --secondary-text: #606266;
+      --border-color: #dcdfe6;
+      --box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+      --transition-time: 0.3s;
+      --border-radius: 8px;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      transition: background-color var(--transition-time);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 25vh;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .logo {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .logo-icon {
+      font-size: 48px;
+      color: var(--primary-color);
+      background: linear-gradient(135deg, #ff9b21, #f56c6c, #409eff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    
+    .search-container {
+      width: 100%;
+      position: relative;
+      max-width: 90%;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      box-shadow: var(--box-shadow);
+      transition: all var(--transition-time);
+      outline: none;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+    }
+    
+    .search-controls {
+      display: flex;
+      margin-top: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .search-engines {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .search-button {
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      width: 44px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all var(--transition-time);
+    }
+    
+    .search-button:hover {
+      background-color: #3367d6;
+      transform: scale(1.05);
+    }
+    
+    .search-engine-btn {
+      background-color: #f0f0f0;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: all var(--transition-time);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .search-engine-btn:hover {
+      background-color: #e0e0e0;
+    }
+    
+    .search-engine-btn.active {
+      background-color: #4285f4;
+      color: white;
+    }
+    
+    .search-engine-icon {
+      margin-right: 6px;
+      font-size: 16px;
+    }
+    
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--box-shadow);
+      transition: all var(--transition-time);
+      z-index: 10;
+    }
+    
+    .dark-mode-toggle:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    /* 暗色模式样式 */
+    body.dark-mode {
+      --light-bg: #1a1a1a;
+      --card-bg: #2c2c2c;
+      --text-color: #ffffff;
+      --secondary-text: #b0b0b0;
+      --border-color: #4c4c4c;
+      --box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 480px) {
+      body {
+        padding-top: 22vh;
+      }
+      
+      .container {
+        max-width: 100%;
+        padding: 15px;
+      }
+      
+      .search-container {
+        max-width: 92%;
+      }
+      
+      .search-input {
+        font-size: 14px;
+        padding: 10px 15px;
+      }
+      
+      .search-engine-btn {
+        padding: 5px 12px;
+        font-size: 13px;
+      }
+      
+      .logo-icon {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <div class="logo-icon">Z</div>
+    </div>
+    
+    <div class="search-container">
+      <form id="search-form" action="https://www.baidu.com/s" method="get">
+        <input type="text" name="word" id="search-input" class="search-input" placeholder="百度搜索或输入网址" autocomplete="off">
+      </form>
+      
+      <div class="search-controls">
+        <div class="search-engines">
+          <button class="search-engine-btn active" data-engine="baidu">
+            <span class="search-engine-icon"><i class="fas fa-paw"></i></span>百度
+          </button>
+          <button class="search-engine-btn" data-engine="google">
+            <span class="search-engine-icon"><i class="fab fa-google"></i></span>谷歌
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="dark-mode-toggle" id="darkModeToggle" title="切换暗色/亮色模式">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script>
+    // 暗色模式切换
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = darkModeToggle.querySelector('i');
+    
+    function updateDarkModeIcon() {
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      darkModeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      
+      // 更新图标
+      updateDarkModeIcon();
+      
+      // 保存用户偏好
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDarkMode);
+    });
+    
+    // 初始化暗色模式
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      updateDarkModeIcon();
+    }
+    
+    // 搜索引擎切换
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+    const engineButtons = document.querySelectorAll('.search-engine-btn');
+    let currentEngine = 'baidu';
+    
+    // 设置搜索引擎配置
+    const engines = {
+      baidu: {
+        action: 'https://www.baidu.com/s',
+        queryParam: 'word',
+        placeholder: '百度搜索或输入网址'
+      },
+      google: {
+        action: 'https://www.google.com/search',
+        queryParam: 'q',
+        placeholder: 'Google搜索或输入网址'
+      }
+    };
+    
+    // 初始化搜索引擎
+    function initSearchEngine() {
+      // 从本地存储加载上次使用的搜索引擎
+      const savedEngine = localStorage.getItem('searchEngine');
+      if (savedEngine && engines[savedEngine]) {
+        switchEngine(savedEngine);
+      }
+    }
+    
+    // 切换搜索引擎
+    function switchEngine(engine) {
+      if (!engines[engine]) return;
+      
+      currentEngine = engine;
+      
+      // 更新表单属性
+      searchForm.action = engines[engine].action;
+      searchInput.name = engines[engine].queryParam;
+      searchInput.placeholder = engines[engine].placeholder;
+      
+      // 更新按钮激活状态
+      engineButtons.forEach(btn => {
+        if (btn.getAttribute('data-engine') === engine) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      // 保存用户偏好
+      localStorage.setItem('searchEngine', engine);
+    }
+    
+    // 绑定搜索引擎切换事件
+    engineButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const engine = this.getAttribute('data-engine');
+        switchEngine(engine);
+      });
+    });
+    
+    // 搜索表单提交处理
+    searchForm.addEventListener('submit', function(e) {
+      const query = searchInput.value.trim();
+      
+      // 检查是否是URL
+      if (query.startsWith('http://') || query.startsWith('https://') || 
+          query.match(/^[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/)) {
+        e.preventDefault();
+        let url = query;
+        if (!query.startsWith('http://') && !query.startsWith('https://')) {
+          url = 'http://' + query;
+        }
+        window.location.href = url;
+      }
+    });
+    
+    // 初始化搜索引擎
+    initSearchEngine();
+  </script>
+</body>
+</html> 
