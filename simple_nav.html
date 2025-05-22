@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23409eff' d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>简易导航</title>
+  <title>我的首页</title>
   
   <!-- 引入FontAwesome图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -48,6 +48,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0 auto;
     }
     
     .logo {
@@ -68,6 +69,8 @@
       width: 100%;
       position: relative;
       max-width: 90%;
+      margin: 0 auto;
+      text-align: center;
     }
     
     .search-input {
@@ -81,6 +84,7 @@
       outline: none;
       background-color: var(--card-bg);
       color: var(--text-color);
+      box-sizing: border-box;
     }
     
     .search-input:focus {
@@ -93,6 +97,7 @@
       margin-top: 15px;
       justify-content: center;
       align-items: center;
+      width: 100%;
     }
     
     .search-engines {
@@ -192,7 +197,7 @@
       }
       
       .search-container {
-        max-width: 92%;
+        max-width: 85%;
       }
       
       .search-input {
