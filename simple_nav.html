@@ -63,6 +63,13 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
+      cursor: pointer;
+      transition: all var(--transition-time);
+      user-select: none;
+    }
+    
+    .logo-icon:hover {
+      transform: scale(1.1);
     }
     
     .search-container {
@@ -350,6 +357,11 @@
     
     // 初始化搜索引擎
     initSearchEngine();
+    
+    // Z图标点击事件
+    document.querySelector('.logo-icon').addEventListener('click', function() {
+      window.open('https://kozhnpc.github.io/my-page/nav.html', '_blank');
+    });
   </script>
 </body>
 </html> 
