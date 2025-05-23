@@ -80,23 +80,98 @@
       text-align: center;
     }
     
-    .search-input {
-      width: 100%;
-      padding: 12px 20px;
-      font-size: 16px;
+    .search-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 24px;
       box-shadow: var(--box-shadow);
       transition: all var(--transition-time);
-      outline: none;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      box-sizing: border-box;
+      overflow: hidden;
     }
     
-    .search-input:focus {
+    .search-wrapper:focus-within {
       border-color: var(--primary-color);
       box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+    }
+    
+    .search-engines {
+      display: flex;
+      padding-left: 15px;
+      align-items: center;
+    }
+    
+    .search-engine-wrapper {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+    }
+    
+    .search-engine-icon {
+      color: var(--primary-color);
+      margin-right: 5px;
+      font-size: 14px;
+    }
+    
+    .search-engine-select {
+      background-color: transparent;
+      border: none;
+      padding: 6px 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--primary-color);
+      outline: none;
+      border-radius: 6px;
+      transition: all var(--transition-time);
+      font-weight: 500;
+    }
+    
+    .search-engine-select:hover {
+      background-color: rgba(64, 158, 255, 0.1);
+    }
+    
+    .search-engine-select option {
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      padding: 8px;
+      font-size: 14px;
+    }
+    
+    .search-engine-btn {
+      background-color: transparent;
+      border: none;
+      border-radius: 16px;
+      padding: 6px 12px;
+      margin-right: 8px;
+      cursor: pointer;
+      transition: all var(--transition-time);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      color: var(--secondary-text);
+    }
+    
+    .search-engine-btn:hover {
+      background-color: rgba(64, 158, 255, 0.1);
+      color: var(--primary-color);
+    }
+    
+    .search-engine-btn.active {
+      background-color: #4285f4;
+      color: white;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: 12px 20px;
+      padding-left: 0;
+      font-size: 16px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: var(--text-color);
     }
     
     .search-controls {
@@ -105,58 +180,6 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-    }
-    
-    .search-engines {
-      display: flex;
-      justify-content: center;
-    }
-    
-    .search-button {
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      width: 44px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 18px;
-      transition: all var(--transition-time);
-    }
-    
-    .search-button:hover {
-      background-color: #3367d6;
-      transform: scale(1.05);
-    }
-    
-    .search-engine-btn {
-      background-color: #f0f0f0;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 16px;
-      margin: 0 5px;
-      cursor: pointer;
-      transition: all var(--transition-time);
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .search-engine-btn:hover {
-      background-color: #e0e0e0;
-    }
-    
-    .search-engine-btn.active {
-      background-color: #4285f4;
-      color: white;
-    }
-    
-    .search-engine-icon {
-      margin-right: 6px;
-      font-size: 16px;
     }
     
     .dark-mode-toggle {
@@ -192,6 +215,19 @@
       --box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
     }
     
+    body.dark-mode .search-engine-select {
+      color: #79bbff;
+    }
+    
+    body.dark-mode .search-engine-icon {
+      color: #79bbff;
+    }
+    
+    body.dark-mode .search-engine-select option {
+      background-color: #2c2c2c;
+      color: #ffffff;
+    }
+    
     /* 响应式设计 */
     @media (max-width: 480px) {
       body {
@@ -210,11 +246,17 @@
       .search-input {
         font-size: 14px;
         padding: 10px 15px;
+        padding-left: 0;
       }
       
-      .search-engine-btn {
-        padding: 5px 12px;
-        font-size: 13px;
+      .search-engine-select {
+        font-size: 12px;
+        padding: 4px 6px;
+      }
+      
+      .search-engine-icon {
+        font-size: 12px;
+        margin-right: 4px;
       }
       
       .logo-icon {
@@ -231,19 +273,19 @@
     
     <div class="search-container">
       <form id="search-form" action="https://www.baidu.com/s" method="get">
-        <input type="text" name="word" id="search-input" class="search-input" placeholder="百度搜索或输入网址" autocomplete="off">
-      </form>
-      
-      <div class="search-controls">
-        <div class="search-engines">
-          <button class="search-engine-btn active" data-engine="baidu">
-            <span class="search-engine-icon"><i class="fas fa-paw"></i></span>百度
-          </button>
-          <button class="search-engine-btn" data-engine="google">
-            <span class="search-engine-icon"><i class="fab fa-google"></i></span>谷歌
-          </button>
+        <div class="search-wrapper">
+          <div class="search-engines">
+            <div class="search-engine-wrapper">
+              <i id="search-engine-icon" class="search-engine-icon fas fa-paw"></i>
+              <select id="search-engine-select" class="search-engine-select">
+                <option value="baidu">百度</option>
+                <option value="google">谷歌</option>
+              </select>
+            </div>
+          </div>
+          <input type="text" name="word" id="search-input" class="search-input" placeholder="百度搜索或输入网址" autocomplete="off">
         </div>
-      </div>
+      </form>
     </div>
   </div>
 
@@ -281,7 +323,8 @@
     // 搜索引擎切换
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
-    const engineButtons = document.querySelectorAll('.search-engine-btn');
+    const engineSelect = document.getElementById('search-engine-select');
+    const engineIcon = document.getElementById('search-engine-icon');
     let currentEngine = 'baidu';
     
     // 设置搜索引擎配置
@@ -289,12 +332,14 @@
       baidu: {
         action: 'https://www.baidu.com/s',
         queryParam: 'word',
-        placeholder: '百度搜索或输入网址'
+        placeholder: '百度搜索或输入网址',
+        icon: 'fas fa-paw'
       },
       google: {
         action: 'https://www.google.com/search',
         queryParam: 'q',
-        placeholder: 'Google搜索或输入网址'
+        placeholder: 'Google搜索或输入网址',
+        icon: 'fab fa-google'
       }
     };
     
@@ -303,6 +348,7 @@
       // 从本地存储加载上次使用的搜索引擎
       const savedEngine = localStorage.getItem('searchEngine');
       if (savedEngine && engines[savedEngine]) {
+        engineSelect.value = savedEngine;
         switchEngine(savedEngine);
       }
     }
@@ -318,25 +364,17 @@
       searchInput.name = engines[engine].queryParam;
       searchInput.placeholder = engines[engine].placeholder;
       
-      // 更新按钮激活状态
-      engineButtons.forEach(btn => {
-        if (btn.getAttribute('data-engine') === engine) {
-          btn.classList.add('active');
-        } else {
-          btn.classList.remove('active');
-        }
-      });
+      // 更新图标
+      engineIcon.className = `search-engine-icon ${engines[engine].icon}`;
       
       // 保存用户偏好
       localStorage.setItem('searchEngine', engine);
     }
     
-    // 绑定搜索引擎切换事件
-    engineButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const engine = this.getAttribute('data-engine');
-        switchEngine(engine);
-      });
+    // 绑定搜索引擎选择器变化事件
+    engineSelect.addEventListener('change', function() {
+      const engine = this.value;
+      switchEngine(engine);
     });
     
     // 搜索表单提交处理
