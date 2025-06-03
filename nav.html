@@ -110,6 +110,7 @@
       box-shadow: var(--box-shadow);
       transition: all var(--transition-time);
       overflow: hidden;
+      margin-bottom: 15px;
     }
     
     .search-wrapper:focus-within {
@@ -119,56 +120,58 @@
     
     .search-engines {
       display: flex;
-      padding-left: 15px;
+      justify-content: center;
       align-items: center;
-      background-color: transparent;
-      border-right: none;
+      gap: 15px;
+      margin-top: 5px;
     }
     
     .search-engine-wrapper {
       display: flex;
       align-items: center;
-      margin-right: 15px;
       background-color: transparent;
-      padding-right: 0;
-      border-right: none;
+      padding: 6px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all var(--transition-time);
+      border: 1px solid transparent;
+    }
+    
+    .search-engine-wrapper:hover {
+      background-color: rgba(64, 158, 255, 0.1);
+      border-color: var(--border-color);
+    }
+    
+    .search-engine-wrapper.active {
+      background: var(--primary-color) !important;
+      background-color: var(--primary-color) !important;
+      color: white !important;
+      border-color: var(--primary-color) !important;
+      box-shadow: 0 2px 8px rgba(64, 158, 255, 0.3) !important;
+    }
+    
+    .search-engine-wrapper.active .search-engine-icon,
+    .search-engine-wrapper.active .search-engine-text {
+      color: white !important;
     }
     
     .search-engine-icon {
       color: var(--primary-color);
-      margin-right: 5px;
+      margin-right: 6px;
       font-size: 14px;
+      transition: color var(--transition-time);
     }
     
-    .search-engine-select {
-      background-color: transparent;
-      border: none;
-      padding: 6px 8px;
-      cursor: pointer;
+    .search-engine-text {
       font-size: 14px;
       color: var(--primary-color);
-      outline: none;
-      border-radius: 6px;
-      transition: all var(--transition-time);
       font-weight: 500;
-      border-right: none;
-    }
-    
-    .search-engine-select:hover {
-      background-color: rgba(64, 158, 255, 0.1);
-    }
-    
-    .search-engine-select option {
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      padding: 8px;
-      font-size: 14px;
+      transition: color var(--transition-time);
     }
     
     .search-input {
       flex: 1;
-      padding: 12px 20px;
-      padding-left: 10px;
+      padding: 14px 20px;
       font-size: 16px;
       border: 0 !important;
       border-width: 0 !important;
@@ -217,7 +220,7 @@
     }
     
     .search-engines,
-    .search-engine-wrapper {
+    .search-engine-wrapper:not(.active) {
       background: transparent !important;
       background-color: transparent !important;
     }
@@ -526,6 +529,22 @@
       color: #ffffff;
     }
     
+    body.dark-mode .search-engine-text {
+      color: #79bbff;
+    }
+    
+    body.dark-mode .search-engine-wrapper.active {
+      background-color: var(--primary-color) !important;
+      color: white !important;
+      border-color: var(--primary-color) !important;
+      box-shadow: 0 2px 8px rgba(64, 158, 255, 0.4) !important;
+    }
+    
+    body.dark-mode .search-engine-wrapper.active .search-engine-icon,
+    body.dark-mode .search-engine-wrapper.active .search-engine-text {
+      color: white !important;
+    }
+    
     body.dark-mode .search-input {
       background-color: transparent;
       color: var(--text-color);
@@ -547,6 +566,20 @@
     
     body.dark-mode .search-engine-wrapper {
       background-color: transparent;
+    }
+    
+    /* 亮色模式下的选中状态增强 */
+    body:not(.dark-mode) .search-engine-wrapper.active {
+      background-color: var(--primary-color) !important;
+      background: var(--primary-color) !important;
+      color: white !important;
+      border-color: var(--primary-color) !important;
+      box-shadow: 0 2px 8px rgba(64, 158, 255, 0.3) !important;
+    }
+    
+    body:not(.dark-mode) .search-engine-wrapper.active .search-engine-icon,
+    body:not(.dark-mode) .search-engine-wrapper.active .search-engine-text {
+      color: white !important;
     }
     
     /* 响应式设计 */
@@ -600,12 +633,12 @@
       .search-wrapper {
         border-radius: 20px;
         background-color: var(--card-bg);
+        margin-bottom: 12px;
       }
       
       .search-input {
-        font-size: 14px;
-        padding: 10px 15px;
-        padding-left: 8px;
+        font-size: 16px;
+        padding: 12px 18px;
         background-color: transparent !important;
         background: transparent !important;
         border: 0 !important;
@@ -613,6 +646,9 @@
         border-style: none !important;
         outline: none !important;
         box-shadow: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
       }
       
       .search-input:focus {
@@ -623,13 +659,21 @@
         box-shadow: none !important;
       }
       
-      .search-engine-select {
-        font-size: 12px;
-        padding: 4px 6px;
-        background-color: transparent !important;
-        background: transparent !important;
-        border: none;
-        border-right: none;
+      .search-input::placeholder {
+        color: var(--secondary-text);
+        opacity: 0.7;
+      }
+      
+      .search-engines {
+        gap: 10px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+      }
+      
+      .search-engine-wrapper {
+        padding: 8px 12px;
+        border-radius: 14px;
+        font-size: 13px;
       }
       
       .search-engine-icon {
@@ -637,19 +681,8 @@
         margin-right: 4px;
       }
       
-      .search-engines {
-        background-color: transparent !important;
-        background: transparent !important;
-        padding-left: 12px;
-        border-right: none;
-      }
-      
-      .search-engine-wrapper {
-        background-color: transparent !important;
-        background: transparent !important;
-        margin-right: 12px;
-        padding-right: 0;
-        border-right: none;
+      .search-engine-text {
+        font-size: 13px;
       }
       
       .logo-icon {
@@ -1026,16 +1059,17 @@
       <div class="search-container">
         <form id="search-form" action="https://www.baidu.com/s" method="get">
           <div class="search-wrapper">
-            <div class="search-engines">
-              <div class="search-engine-wrapper">
-                <i id="search-engine-icon" class="search-engine-icon fas fa-paw"></i>
-                <select id="search-engine-select" class="search-engine-select">
-                  <option value="baidu">百度</option>
-                  <option value="google">谷歌</option>
-                </select>
-              </div>
-            </div>
             <input type="text" name="word" id="search-input" class="search-input" placeholder="百度搜索或输入网址" autocomplete="off">
+          </div>
+          <div class="search-engines">
+            <div class="search-engine-wrapper active" data-engine="baidu">
+              <i class="search-engine-icon fas fa-paw"></i>
+              <span class="search-engine-text">百度</span>
+            </div>
+            <div class="search-engine-wrapper" data-engine="google">
+              <i class="search-engine-icon fab fa-google"></i>
+              <span class="search-engine-text">谷歌</span>
+            </div>
           </div>
         </form>
       </div>
@@ -1169,8 +1203,7 @@
     // 搜索引擎功能
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
-    const engineSelect = document.getElementById('search-engine-select');
-    const engineIcon = document.getElementById('search-engine-icon');
+    const engineWrappers = document.querySelectorAll('.search-engine-wrapper');
     let currentEngine = 'baidu';
     
     // 设置搜索引擎配置
@@ -1178,14 +1211,12 @@
       baidu: {
         action: 'https://www.baidu.com/s',
         queryParam: 'word',
-        placeholder: '百度搜索或输入网址',
-        icon: 'fas fa-paw'
+        placeholder: '百度搜索或输入网址'
       },
       google: {
         action: 'https://www.google.com/search',
         queryParam: 'q',
-        placeholder: 'Google搜索或输入网址',
-        icon: 'fab fa-google'
+        placeholder: 'Google搜索或输入网址'
       }
     };
     
@@ -1194,7 +1225,6 @@
       // 从本地存储加载上次使用的搜索引擎
       const savedEngine = localStorage.getItem('searchEngine');
       if (savedEngine && engines[savedEngine]) {
-        engineSelect.value = savedEngine;
         switchEngine(savedEngine);
       }
     }
@@ -1210,17 +1240,24 @@
       searchInput.name = engines[engine].queryParam;
       searchInput.placeholder = engines[engine].placeholder;
       
-      // 更新图标
-      engineIcon.className = `search-engine-icon ${engines[engine].icon}`;
+      // 更新按钮状态
+      engineWrappers.forEach(wrapper => {
+        wrapper.classList.remove('active');
+        if (wrapper.getAttribute('data-engine') === engine) {
+          wrapper.classList.add('active');
+        }
+      });
       
       // 保存用户偏好
       localStorage.setItem('searchEngine', engine);
     }
     
-    // 绑定搜索引擎选择器变化事件
-    engineSelect.addEventListener('change', function() {
-      const engine = this.value;
-      switchEngine(engine);
+    // 绑定搜索引擎按钮点击事件
+    engineWrappers.forEach(wrapper => {
+      wrapper.addEventListener('click', function() {
+        const engine = this.getAttribute('data-engine');
+        switchEngine(engine);
+      });
     });
     
     // 搜索表单提交处理
