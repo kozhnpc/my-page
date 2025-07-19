@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8">
   <!-- 使用内联SVG作为备用图标 -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23409eff' d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23409eff' d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Z-网站导航</title>
-  
+
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="导航">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
-  
+
   <!-- 引入Element Plus图标 -->
   <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
   <!-- 引入FontAwesome图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  
+
   <!-- 添加一个默认的网站图标 -->
   <style>
     @media (prefers-color-scheme: light) {
-      link[rel="icon"] { 
-        color: var(--primary-color); 
+      link[rel="icon"] {
+        color: var(--primary-color);
       }
     }
+
     @media (prefers-color-scheme: dark) {
-      link[rel="icon"] { 
-        color: #ffffff; 
+      link[rel="icon"] {
+        color: #ffffff;
       }
     }
   </style>
-  
+
   <style>
     :root {
       --primary-color: #409eff;
@@ -47,7 +50,7 @@
       --transition-time: 0.3s;
       --border-radius: 8px;
     }
-    
+
     body {
       font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
       margin: 0;
@@ -60,13 +63,13 @@
       background-size: cover;
       background-attachment: fixed;
     }
-    
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
     }
-    
+
     /* 搜索引擎样式 */
     .search-header {
       text-align: center;
@@ -74,12 +77,12 @@
       margin-bottom: 30px;
       animation: fadeInDown 1s ease-out;
     }
-    
+
     .logo {
       margin-bottom: 30px;
       text-align: center;
     }
-    
+
     .logo-icon {
       font-size: 64px;
       color: var(--primary-color);
@@ -91,7 +94,7 @@
       transition: all var(--transition-time);
       user-select: none;
     }
-    
+
     .search-container {
       width: 100%;
       position: relative;
@@ -99,7 +102,7 @@
       margin: 0 auto;
       text-align: center;
     }
-    
+
     .search-wrapper {
       position: relative;
       display: flex;
@@ -112,12 +115,12 @@
       overflow: hidden;
       margin-bottom: 15px;
     }
-    
+
     .search-wrapper:focus-within {
       border-color: var(--primary-color);
       box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
     }
-    
+
     .search-engines {
       display: flex;
       justify-content: center;
@@ -125,7 +128,7 @@
       gap: 15px;
       margin-top: 5px;
     }
-    
+
     .search-engine-wrapper {
       display: flex;
       align-items: center;
@@ -136,12 +139,12 @@
       transition: all var(--transition-time);
       border: 1px solid transparent;
     }
-    
+
     .search-engine-wrapper:hover {
       background-color: rgba(64, 158, 255, 0.1);
       border-color: var(--border-color);
     }
-    
+
     .search-engine-wrapper.active {
       background: var(--primary-color) !important;
       background-color: var(--primary-color) !important;
@@ -149,26 +152,26 @@
       border-color: var(--primary-color) !important;
       box-shadow: 0 2px 8px rgba(64, 158, 255, 0.3) !important;
     }
-    
+
     .search-engine-wrapper.active .search-engine-icon,
     .search-engine-wrapper.active .search-engine-text {
       color: white !important;
     }
-    
+
     .search-engine-icon {
       color: var(--primary-color);
       margin-right: 6px;
       font-size: 14px;
       transition: color var(--transition-time);
     }
-    
+
     .search-engine-text {
       font-size: 14px;
       color: var(--primary-color);
       font-weight: 500;
       transition: color var(--transition-time);
     }
-    
+
     .search-input {
       flex: 1;
       padding: 14px 20px;
@@ -187,7 +190,7 @@
       -moz-appearance: none !important;
       appearance: none !important;
     }
-    
+
     .search-input:focus {
       border: 0 !important;
       border-width: 0 !important;
@@ -195,12 +198,12 @@
       outline: none !important;
       box-shadow: none !important;
     }
-    
+
     .search-input::placeholder {
       color: var(--secondary-text);
       opacity: 0.7;
     }
-    
+
     /* 强制确保搜索框背景透明和无边框 */
     .search-wrapper input[type="text"] {
       background: transparent !important;
@@ -210,7 +213,7 @@
       border-style: none !important;
       box-shadow: none !important;
     }
-    
+
     .search-wrapper input[type="text"]:focus {
       border: 0 !important;
       border-width: 0 !important;
@@ -218,30 +221,30 @@
       outline: none !important;
       box-shadow: none !important;
     }
-    
+
     .search-engines,
     .search-engine-wrapper:not(.active) {
       background: transparent !important;
       background-color: transparent !important;
     }
-    
+
     /* 移除所有可能的边框和分割线 */
     .search-wrapper * {
       border-left: none !important;
       border-right: none !important;
     }
-    
+
     .search-wrapper {
       border-left: 1px solid var(--border-color);
       border-right: 1px solid var(--border-color);
     }
-    
+
     /* 确保搜索框内部元素无缝连接 */
     .search-engine-wrapper::after,
     .search-engines::after {
       display: none;
     }
-    
+
     /* 彻底重置输入框样式 */
     input[type="text"].search-input,
     .search-input,
@@ -262,7 +265,7 @@
       -moz-appearance: none !important;
       appearance: none !important;
     }
-    
+
     input[type="text"].search-input:focus,
     .search-input:focus,
     #search-input:focus {
@@ -277,7 +280,7 @@
       -webkit-box-shadow: none !important;
       -moz-box-shadow: none !important;
     }
-    
+
     /* 原有样式继续保持 */
     header {
       text-align: center;
@@ -285,7 +288,7 @@
       margin-bottom: 30px;
       animation: fadeInDown 1s ease-out;
     }
-    
+
     h1 {
       margin: 0;
       font-size: 2.5rem;
@@ -294,7 +297,7 @@
       position: relative;
       display: inline-block;
     }
-    
+
     h1::after {
       content: '';
       position: absolute;
@@ -305,13 +308,13 @@
       left: 25%;
       border-radius: 2px;
     }
-    
+
     header p {
       color: var(--secondary-text);
       max-width: 600px;
       margin: 15px auto 0;
     }
-    
+
     .env-switcher {
       display: flex;
       justify-content: center;
@@ -319,7 +322,7 @@
       gap: 10px;
       animation: fadeIn 1s ease-out 0.3s both;
     }
-    
+
     .env-button {
       padding: 10px 20px;
       background-color: var(--card-bg);
@@ -331,13 +334,13 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .env-button:hover {
       border-color: var(--hover-color);
       color: var(--primary-color);
       transform: translateY(-2px);
     }
-    
+
     .env-button::before {
       content: '';
       position: absolute;
@@ -348,29 +351,29 @@
       background-color: var(--primary-color);
       transition: width var(--transition-time);
     }
-    
+
     .env-button:hover::before {
       width: 100%;
     }
-    
+
     .env-button.active {
       background-color: var(--primary-color);
       color: white;
       border-color: var(--primary-color);
       box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
     }
-    
+
     .env-button.active::before {
       display: none;
     }
-    
+
     .cards-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px;
       animation: fadeIn 1s ease-out 0.5s both;
     }
-    
+
     .card {
       background-color: var(--card-bg);
       border-radius: var(--border-radius);
@@ -387,7 +390,7 @@
       overflow: hidden;
       z-index: 1;
     }
-    
+
     .card::before {
       content: '';
       position: absolute;
@@ -400,16 +403,16 @@
       z-index: -1;
       transition: opacity var(--transition-time);
     }
-    
+
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
-    
+
     .card:hover::before {
       opacity: 0.05;
     }
-    
+
     .card-icon {
       width: 70px;
       height: 70px;
@@ -423,12 +426,12 @@
       border-radius: 50%;
       transition: all var(--transition-time);
     }
-    
+
     .card:hover .card-icon {
       transform: scale(1.1);
       background-color: rgba(64, 158, 255, 0.2);
     }
-    
+
     .card-title {
       font-size: 18px;
       font-weight: 600;
@@ -436,11 +439,11 @@
       text-align: center;
       transition: color var(--transition-time);
     }
-    
+
     .card:hover .card-title {
       color: var(--primary-color);
     }
-    
+
     .card-url {
       font-size: 14px;
       color: var(--secondary-text);
@@ -450,7 +453,7 @@
       max-width: 100%;
       padding: 0 10px;
     }
-    
+
     .card:hover .card-url {
       color: var(--primary-color);
       opacity: 0.8;
@@ -474,34 +477,36 @@
       z-index: 10;
       animation: fadeIn 1s ease-out 0.8s both;
     }
-    
+
     .dark-mode-toggle:hover {
       background-color: var(--primary-color);
       color: white;
       transform: rotate(15deg);
     }
-    
+
     /* 动画效果 */
     @keyframes fadeIn {
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
     }
-    
+
     @keyframes fadeInDown {
       from {
         opacity: 0;
         transform: translateY(-20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    
+
     /* 暗色模式样式 */
     body.dark-mode {
       --light-bg: #1a1a1a;
@@ -511,63 +516,63 @@
       --border-color: #4c4c4c;
       --box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
     }
-    
+
     body.dark-mode {
       background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
     }
-    
+
     body.dark-mode .search-engine-select {
       color: #79bbff;
     }
-    
+
     body.dark-mode .search-engine-icon {
       color: #79bbff;
     }
-    
+
     body.dark-mode .search-engine-select option {
       background-color: #2c2c2c;
       color: #ffffff;
     }
-    
+
     body.dark-mode .search-engine-text {
       color: #79bbff;
     }
-    
+
     body.dark-mode .search-engine-wrapper.active {
       background-color: var(--primary-color) !important;
       color: white !important;
       border-color: var(--primary-color) !important;
       box-shadow: 0 2px 8px rgba(64, 158, 255, 0.4) !important;
     }
-    
+
     body.dark-mode .search-engine-wrapper.active .search-engine-icon,
     body.dark-mode .search-engine-wrapper.active .search-engine-text {
       color: white !important;
     }
-    
+
     body.dark-mode .search-input {
       background-color: transparent;
       color: var(--text-color);
     }
-    
+
     body.dark-mode .search-input::placeholder {
       color: var(--secondary-text);
       opacity: 0.8;
     }
-    
+
     body.dark-mode .search-wrapper {
       background-color: var(--card-bg);
       border-color: var(--border-color);
     }
-    
+
     body.dark-mode .search-engines {
       background-color: transparent;
     }
-    
+
     body.dark-mode .search-engine-wrapper {
       background-color: transparent;
     }
-    
+
     /* 亮色模式下的选中状态增强 */
     body:not(.dark-mode) .search-engine-wrapper.active {
       background-color: var(--primary-color) !important;
@@ -576,66 +581,66 @@
       border-color: var(--primary-color) !important;
       box-shadow: 0 2px 8px rgba(64, 158, 255, 0.3) !important;
     }
-    
+
     body:not(.dark-mode) .search-engine-wrapper.active .search-engine-icon,
     body:not(.dark-mode) .search-engine-wrapper.active .search-engine-text {
       color: white !important;
     }
-    
+
     /* 响应式设计 */
     @media (max-width: 768px) {
       .cards-container {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       }
-      
+
       .card-icon {
         width: 60px;
         height: 60px;
         font-size: 24px;
       }
-      
+
       .container {
         padding: 15px;
       }
-      
+
       .search-container {
         max-width: 90%;
       }
     }
-    
+
     @media (max-width: 480px) {
       .cards-container {
         grid-template-columns: 1fr;
         max-width: 320px;
         margin: 0 auto;
       }
-      
+
       .env-button {
         padding: 8px 16px;
         font-size: 14px;
       }
-      
+
       .dark-mode-toggle {
         width: 40px;
         height: 40px;
         top: 15px;
         right: 15px;
       }
-      
+
       body {
         font-size: 14px;
       }
-      
+
       .search-container {
         max-width: 90%;
       }
-      
+
       .search-wrapper {
         border-radius: 20px;
         background-color: var(--card-bg);
         margin-bottom: 12px;
       }
-      
+
       .search-input {
         font-size: 16px;
         padding: 12px 18px;
@@ -650,7 +655,7 @@
         -moz-appearance: none !important;
         appearance: none !important;
       }
-      
+
       .search-input:focus {
         border: 0 !important;
         border-width: 0 !important;
@@ -658,44 +663,44 @@
         outline: none !important;
         box-shadow: none !important;
       }
-      
+
       .search-input::placeholder {
         color: var(--secondary-text);
         opacity: 0.7;
       }
-      
+
       .search-engines {
         gap: 10px;
         margin-top: 8px;
         flex-wrap: wrap;
       }
-      
+
       .search-engine-wrapper {
         padding: 8px 12px;
         border-radius: 14px;
         font-size: 13px;
       }
-      
+
       .search-engine-icon {
         font-size: 12px;
         margin-right: 4px;
       }
-      
+
       .search-engine-text {
         font-size: 13px;
       }
-      
+
       .logo-icon {
         font-size: 56px;
       }
     }
-    
+
     /* 书签模块样式 */
     .bookmark-section {
       margin-top: 40px;
       animation: fadeIn 1s ease-out 0.7s both;
     }
-    
+
     .section-title {
       font-size: 1.8rem;
       margin-bottom: 20px;
@@ -706,7 +711,7 @@
       left: 50%;
       transform: translateX(-50%);
     }
-    
+
     .section-title::after {
       content: '';
       position: absolute;
@@ -717,14 +722,14 @@
       left: 30%;
       border-radius: 2px;
     }
-    
+
     .bookmark-container {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
       justify-content: center;
     }
-    
+
     .bookmark-item {
       background-color: var(--card-bg);
       border-radius: var(--border-radius);
@@ -741,7 +746,7 @@
       overflow: hidden;
       border-left: 3px solid var(--primary-color);
     }
-    
+
     .bookmark-item::before {
       content: '';
       position: absolute;
@@ -754,31 +759,31 @@
       z-index: -1;
       transition: opacity var(--transition-time);
     }
-    
+
     .bookmark-item:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     }
-    
+
     .bookmark-item:hover::before {
       opacity: 0.05;
     }
-    
+
     .bookmark-icon {
       color: var(--primary-color);
       font-size: 20px;
       margin-right: 10px;
       transition: transform var(--transition-time);
     }
-    
+
     .bookmark-item:hover .bookmark-icon {
       transform: scale(1.1);
     }
-    
+
     .bookmark-info {
       flex: 1;
     }
-    
+
     .bookmark-title {
       font-weight: 600;
       font-size: 16px;
@@ -787,7 +792,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    
+
     .bookmark-url {
       font-size: 12px;
       color: var(--secondary-text);
@@ -795,7 +800,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    
+
     .bookmark-controls {
       margin-bottom: 20px;
       display: flex;
@@ -803,7 +808,7 @@
       gap: 15px;
       flex-wrap: wrap;
     }
-    
+
     .bookmark-category {
       padding: 6px 15px;
       background-color: var(--card-bg);
@@ -813,24 +818,24 @@
       transition: all var(--transition-time);
       font-size: 14px;
     }
-    
+
     .bookmark-category:hover {
       border-color: var(--hover-color);
       color: var(--primary-color);
     }
-    
+
     .bookmark-category.active {
       background-color: var(--primary-color);
       color: white;
       border-color: var(--primary-color);
     }
-    
+
     .bookmark-search {
       position: relative;
       max-width: 300px;
       margin: 0 auto 20px;
     }
-    
+
     .bookmark-search input {
       width: 100%;
       padding: 10px 15px;
@@ -842,12 +847,12 @@
       transition: all var(--transition-time);
       outline: none;
     }
-    
+
     .bookmark-search input:focus {
       border-color: var(--primary-color);
       box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
     }
-    
+
     .bookmark-search i {
       position: absolute;
       left: 12px;
@@ -855,13 +860,13 @@
       transform: translateY(-50%);
       color: var(--secondary-text);
     }
-    
+
     .bookmark-loading {
       text-align: center;
       padding: 30px 0;
       color: var(--secondary-text);
     }
-    
+
     .bookmark-loading .spinner {
       width: 30px;
       height: 30px;
@@ -872,17 +877,19 @@
       animation: spin 1s ease-in-out infinite;
       margin-bottom: 15px;
     }
-    
+
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
-    
+
     .bookmark-error {
       text-align: center;
       padding: 30px 0;
       color: #f56c6c;
     }
-    
+
     .reload-button {
       margin-top: 15px;
       padding: 8px 16px;
@@ -893,44 +900,44 @@
       cursor: pointer;
       transition: all var(--transition-time);
     }
-    
+
     .reload-button:hover {
       background-color: var(--hover-color);
     }
-    
+
     /* 响应式设计 */
     @media (max-width: 768px) {
       .bookmark-container {
         gap: 10px;
       }
-      
+
       .bookmark-item {
         min-width: 150px;
         padding: 10px 15px;
       }
-      
+
       .section-title {
         font-size: 1.5rem;
       }
     }
-    
+
     @media (max-width: 480px) {
       .bookmark-container {
         flex-direction: column;
         align-items: center;
       }
-      
+
       .bookmark-item {
         width: 90%;
         max-width: 320px;
       }
-      
+
       .bookmark-category {
         font-size: 12px;
         padding: 5px 12px;
       }
     }
-    
+
     /* 抽屉式书签模块样式 */
     .bookmark-drawer {
       position: fixed;
@@ -946,11 +953,11 @@
       flex-direction: column;
       overflow: hidden;
     }
-    
+
     .bookmark-drawer.open {
       right: 0;
     }
-    
+
     .bookmark-drawer-header {
       padding: 20px;
       border-bottom: 1px solid var(--border-color);
@@ -958,14 +965,14 @@
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .bookmark-drawer-title {
       font-size: 1.5rem;
       color: var(--primary-color);
       margin: 0;
       font-weight: 600;
     }
-    
+
     .bookmark-drawer-close {
       background: none;
       border: none;
@@ -974,17 +981,17 @@
       cursor: pointer;
       transition: color var(--transition-time);
     }
-    
+
     .bookmark-drawer-close:hover {
       color: var(--primary-color);
     }
-    
+
     .bookmark-drawer-content {
       flex: 1;
       overflow-y: auto;
       padding: 20px;
     }
-    
+
     .bookmark-toggle-btn {
       position: fixed;
       bottom: 20px;
@@ -1005,22 +1012,22 @@
       transition: all var(--transition-time);
       animation: fadeIn 1s ease-out 0.8s both;
     }
-    
+
     .bookmark-toggle-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
     }
-    
+
     body.drawer-open {
       overflow: hidden;
     }
-    
+
     @media (max-width: 480px) {
       .bookmark-drawer {
         width: 100%;
         right: -100%;
       }
-      
+
       .bookmark-toggle-btn {
         bottom: 70px;
         right: 15px;
@@ -1029,7 +1036,7 @@
         font-size: 20px;
       }
     }
-    
+
     .overlay {
       position: fixed;
       top: 0;
@@ -1042,24 +1049,26 @@
       transition: opacity var(--transition-time);
       z-index: 999;
     }
-    
+
     .overlay.visible {
       opacity: 1;
       visibility: visible;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="search-header">
       <div class="logo">
         <div class="logo-icon">Z</div>
       </div>
-      
+
       <div class="search-container">
         <form id="search-form" action="https://www.baidu.com/s" method="get">
           <div class="search-wrapper">
-            <input type="text" name="word" id="search-input" class="search-input" placeholder="百度搜索或输入网址" autocomplete="off">
+            <input type="text" name="word" id="search-input" class="search-input" placeholder="百度搜索或输入网址"
+              autocomplete="off">
           </div>
           <div class="search-engines">
             <div class="search-engine-wrapper active" data-engine="baidu">
@@ -1074,7 +1083,7 @@
         </form>
       </div>
     </div>
-    
+
     <div class="env-switcher">
       <button class="env-button active" data-env="Local">
         <i class="fas fa-home"></i> 本地网络
@@ -1083,16 +1092,16 @@
         <i class="fas fa-globe"></i> TailScale
       </button>
     </div>
-    
+
     <div class="cards-container" id="cards-container">
       <!-- 卡片将通过JS动态生成 -->
     </div>
   </div>
-  
+
   <button class="dark-mode-toggle" id="darkModeToggle" title="切换暗色/亮色模式">
     <i class="fas fa-moon"></i>
   </button>
-  
+
   <button class="bookmark-toggle-btn" id="toggle-bookmark-drawer" title="我的书签">
     <i class="fas fa-bookmark"></i>
   </button>
@@ -1109,11 +1118,11 @@
         <i class="fas fa-search"></i>
         <input type="text" id="bookmark-search-input" placeholder="搜索书签...">
       </div>
-      
+
       <div class="bookmark-controls">
         <!-- 分类按钮将通过JS动态生成 -->
       </div>
-      
+
       <div id="bookmark-content">
         <div class="bookmark-loading">
           <div class="spinner"></div>
@@ -1128,6 +1137,22 @@
   <script>
     // Mock 网站数据
     const mockSitesData = [
+      {
+        name: "家庭相册",
+        icon: "<i class='fas fa-images'></i>",
+        url: {
+          Local: "http://192.168.31.123:3300/#/album",
+          TailScale: "http://100.114.93.104:3300/#/album"
+        }
+      },
+      {
+        name: "音乐",
+        icon: "<i class='fas fa-music'></i>",
+        url: {
+          Local: "http://192.168.31.123:3300/#/audio",
+          TailScale: "http://100.114.93.104:3300/#/audio"
+        }
+      },
       {
         name: "任务执行器",
         icon: "<i class='fas fa-list-check'></i>",
@@ -1201,35 +1226,43 @@
         }
       },
       {
-        name: "家庭相册",
-        icon: "<i class='fas fa-images'></i>",
-        url: {
-          Local: "http://192.168.31.123:3300/#/album",
-          TailScale: "http://100.114.93.104:3300/#/album"
-        }
-      },
-      {
         name: "小视频",
         icon: "<i class='fas fa-video'></i>",
         url: {
           Local: "http://192.168.31.123:3300/#/douyin_video",
           TailScale: "http://100.114.93.104:3300/#/douyin_video"
         }
+      },
+      {
+        name: "漫画",
+        icon: "<i class='fas fa-book'></i>",
+        url: {
+          Local: "http://192.168.31.123:3300/#/HM",
+          TailScale: "http://100.114.93.104:3300/#/HM"
+        }
+      },
+      {
+        name: "图片",
+        icon: "<i class='fas fa-images'></i>",
+        url: {
+          Local: "http://192.168.31.123:3300/#/BZ",
+          TailScale: "http://100.114.93.104:3300/#/BZ"
+        }
       }
     ];
-    
+
     // 网站数据
     let sitesData = [];
-    
+
     // 当前环境
     let currentEnv = "Local";
-    
+
     // 搜索引擎功能
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
     const engineWrappers = document.querySelectorAll('.search-engine-wrapper');
     let currentEngine = 'baidu';
-    
+
     // 设置搜索引擎配置
     const engines = {
       baidu: {
@@ -1243,7 +1276,7 @@
         placeholder: 'Google搜索或输入网址'
       }
     };
-    
+
     // 初始化搜索引擎
     function initSearchEngine() {
       // 从本地存储加载上次使用的搜索引擎
@@ -1252,18 +1285,18 @@
         switchEngine(savedEngine);
       }
     }
-    
+
     // 切换搜索引擎
     function switchEngine(engine) {
       if (!engines[engine]) return;
-      
+
       currentEngine = engine;
-      
+
       // 更新表单属性
       searchForm.action = engines[engine].action;
       searchInput.name = engines[engine].queryParam;
       searchInput.placeholder = engines[engine].placeholder;
-      
+
       // 更新按钮状态
       engineWrappers.forEach(wrapper => {
         wrapper.classList.remove('active');
@@ -1271,26 +1304,26 @@
           wrapper.classList.add('active');
         }
       });
-      
+
       // 保存用户偏好
       localStorage.setItem('searchEngine', engine);
     }
-    
+
     // 绑定搜索引擎按钮点击事件
     engineWrappers.forEach(wrapper => {
-      wrapper.addEventListener('click', function() {
+      wrapper.addEventListener('click', function () {
         const engine = this.getAttribute('data-engine');
         switchEngine(engine);
       });
     });
-    
+
     // 搜索表单提交处理
-    searchForm.addEventListener('submit', function(e) {
+    searchForm.addEventListener('submit', function (e) {
       const query = searchInput.value.trim();
-      
+
       // 检查是否是URL
-      if (query.startsWith('http://') || query.startsWith('https://') || 
-          query.match(/^[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/)) {
+      if (query.startsWith('http://') || query.startsWith('https://') ||
+        query.match(/^[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/)) {
         e.preventDefault();
         let url = query;
         if (!query.startsWith('http://') && !query.startsWith('https://')) {
@@ -1299,11 +1332,11 @@
         window.location.href = url;
       }
     });
-    
+
     // 获取网站数据
     async function fetchSitesData() {
       const cardsContainer = document.getElementById('cards-container');
-      
+
       // 显示加载状态
       cardsContainer.innerHTML = `
         <div class="bookmark-loading" style="width:100%; padding:40px 0;">
@@ -1311,10 +1344,10 @@
           <p>加载网站数据中...</p>
         </div>
       `;
-      
+
       try {
         let data;
-        
+
         try {
           // 尝试从实际API获取数据
           const response = await fetch('https://api.example.com/sites', {
@@ -1324,11 +1357,11 @@
             },
             signal: AbortSignal.timeout(5000) // 5秒超时
           });
-          
+
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
-          
+
           data = await response.json();
           console.log('从API加载网站数据成功');
         } catch (apiError) {
@@ -1337,10 +1370,10 @@
           await new Promise(resolve => setTimeout(resolve, 600)); // 模拟网络延迟
           data = { status: 'success', data: mockSitesData };
         }
-        
+
         if (data && (data.status === 'success' || data.status === 200)) {
           sitesData = data.data || data.sites || [];
-          
+
           // 可选：保存到本地存储作为缓存
           try {
             localStorage.setItem('sites_cache', JSON.stringify(sitesData));
@@ -1348,7 +1381,7 @@
           } catch (e) {
             console.warn('无法缓存网站数据', e);
           }
-          
+
           // 渲染网站卡片
           renderCards();
         } else {
@@ -1356,19 +1389,19 @@
         }
       } catch (error) {
         console.error('获取网站数据失败', error);
-        
+
         // 尝试从缓存加载
         try {
           const cachedData = localStorage.getItem('sites_cache');
           const cacheTime = localStorage.getItem('sites_cache_time');
-          
+
           if (cachedData && cacheTime) {
             const cacheAge = Date.now() - parseInt(cacheTime);
             // 缓存有效期为1天
             if (cacheAge < 24 * 60 * 60 * 1000) {
               sitesData = JSON.parse(cachedData);
               renderCards();
-              
+
               // 显示使用了缓存的提示
               const notice = document.createElement('div');
               notice.style.width = '100%';
@@ -1382,11 +1415,11 @@
               return;
             }
           }
-          
+
           // 缓存不可用或已过期，回退到mock数据
           sitesData = mockSitesData;
           renderCards();
-          
+
           // 显示使用了默认数据的提示
           const notice = document.createElement('div');
           notice.style.width = '100%';
@@ -1409,33 +1442,33 @@
         }
       }
     }
-    
+
     // 渲染卡片
     function renderCards() {
       if (!sitesData || sitesData.length === 0) {
         return;
       }
-      
+
       const cardsContainer = document.getElementById('cards-container');
       cardsContainer.innerHTML = '';
-      
+
       sitesData.forEach((site, index) => {
         const card = document.createElement('a');
         card.className = 'card';
         card.href = site.url[currentEnv];
         card.target = '_blank';
         card.style.animationDelay = `${0.1 * index}s`;
-        
+
         card.innerHTML = `
           <div class="card-icon">${site.icon}</div>
           <div class="card-title">${site.name}</div>
           <div class="card-url">${site.url[currentEnv]}</div>
         `;
-        
+
         cardsContainer.appendChild(card);
       });
     }
-    
+
     // 环境切换
     const envButtons = document.querySelectorAll('.env-button');
     envButtons.forEach(button => {
@@ -1443,67 +1476,67 @@
         // 更新按钮状态
         envButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-        
+
         // 更新当前环境
         currentEnv = button.getAttribute('data-env');
-        
+
         // 重新渲染卡片
         renderCards();
       });
     });
-    
+
     // 页面加载完成后获取网站数据和初始化搜索引擎
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       fetchSitesData();
       initSearchEngine();
     });
-    
+
     // 暗色模式切换
     const darkModeToggle = document.getElementById('darkModeToggle');
     const darkModeIcon = darkModeToggle.querySelector('i');
-    
+
     function updateDarkModeIcon() {
       const isDarkMode = document.body.classList.contains('dark-mode');
       darkModeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
     }
-    
+
     darkModeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
-      
+
       // 更新图标
       updateDarkModeIcon();
-      
+
       // 保存用户偏好
       const isDarkMode = document.body.classList.contains('dark-mode');
       localStorage.setItem('darkMode', isDarkMode);
     });
-    
+
     // 初始化暗色模式
     if (localStorage.getItem('darkMode') === 'true') {
       document.body.classList.add('dark-mode');
       updateDarkModeIcon();
     }
-    
+
     // 添加键盘快捷键支持
     document.addEventListener('keydown', (event) => {
       // Alt + D 切换暗色模式
       if (event.altKey && event.key === 'd') {
         darkModeToggle.click();
       }
-      
+
       // Alt + 1 切换到本地环境
       if (event.altKey && event.key === '1') {
         envButtons[0].click();
       }
-      
+
       // Alt + 2 切换到TailScale环境
       if (event.altKey && event.key === '2') {
         envButtons[1].click();
       }
     });
-    
+
     // ========== 书签功能 ==========
-    
+
     // Mock API 数据
     const mockBookmarks = {
       "status": "success",
@@ -1600,13 +1633,13 @@
         }
       ]
     };
-    
+
     // 存储当前书签数据
     let bookmarks = [];
     let filteredBookmarks = [];
     let currentCategory = 'all';
     let searchTerm = '';
-    
+
     // 初始化书签功能
     function initBookmarks() {
       // 初始化搜索功能
@@ -1615,64 +1648,64 @@
         searchTerm = searchInput.value.trim();
         renderBookmarks();
       });
-      
+
       // 初始加载书签
       fetchBookmarks();
     }
-    
+
     // 渲染书签分类按钮
     function renderCategoryButtons() {
       const categoriesContainer = document.querySelector('.bookmark-controls');
-      
+
       if (!bookmarks.length) {
         return;
       }
-      
+
       // 清空当前分类按钮
       categoriesContainer.innerHTML = '';
-      
+
       // 添加"全部"分类按钮
       const allButton = document.createElement('button');
       allButton.className = 'bookmark-category active';
       allButton.setAttribute('data-category', 'all');
       allButton.textContent = '全部';
       categoriesContainer.appendChild(allButton);
-      
+
       // 从数据中提取所有唯一分类
       const uniqueCategories = [...new Set(bookmarks.map(bookmark => bookmark.category))];
-      
+
       // 为每个分类创建按钮
       uniqueCategories.forEach(category => {
         if (!category) return; // 跳过空分类
-        
+
         const button = document.createElement('button');
         button.className = 'bookmark-category';
         button.setAttribute('data-category', category);
-        
+
         // 将分类名首字母大写显示
         const displayName = category.charAt(0).toUpperCase() + category.slice(1);
         button.textContent = displayName;
-        
+
         categoriesContainer.appendChild(button);
       });
-      
+
       // 绑定分类按钮点击事件
       const categoryButtons = document.querySelectorAll('.bookmark-category');
       categoryButtons.forEach(button => {
         button.addEventListener('click', () => {
           categoryButtons.forEach(btn => btn.classList.remove('active'));
           button.classList.add('active');
-          
+
           currentCategory = button.getAttribute('data-category');
           renderBookmarks();
         });
       });
     }
-    
+
     // 获取书签数据
     async function fetchBookmarks() {
       const bookmarkContent = document.getElementById('bookmark-content');
-      
+
       try {
         bookmarkContent.innerHTML = `
           <div class="bookmark-loading">
@@ -1680,9 +1713,9 @@
             <p>加载中...</p>
           </div>
         `;
-        
+
         let data;
-        
+
         try {
           // 尝试从实际API获取数据
           const response = await fetch('https://api.example.com/bookmarks', {
@@ -1695,11 +1728,11 @@
             // 可选的超时设置
             signal: AbortSignal.timeout(5000) // 5秒超时
           });
-          
+
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
-          
+
           data = await response.json();
           console.log('从API加载书签成功');
         } catch (apiError) {
@@ -1708,17 +1741,17 @@
           await new Promise(resolve => setTimeout(resolve, 800)); // 模拟网络延迟
           data = mockBookmarks;
         }
-        
+
         if (data && (data.status === 'success' || data.status === 200)) {
           bookmarks = data.data || data.bookmarks || [];
           filteredBookmarks = [...bookmarks];
-          
+
           // 渲染分类按钮
           renderCategoryButtons();
-          
+
           // 渲染书签列表
           renderBookmarks();
-          
+
           // 可选：保存到本地存储作为缓存
           try {
             localStorage.setItem('bookmarks_cache', JSON.stringify(bookmarks));
@@ -1731,12 +1764,12 @@
         }
       } catch (error) {
         console.error('获取书签失败', error);
-        
+
         // 尝试从缓存加载
         try {
           const cachedData = localStorage.getItem('bookmarks_cache');
           const cacheTime = localStorage.getItem('bookmarks_cache_time');
-          
+
           if (cachedData && cacheTime) {
             const cacheAge = Date.now() - parseInt(cacheTime);
             // 缓存有效期为1天
@@ -1744,7 +1777,7 @@
               bookmarks = JSON.parse(cachedData);
               filteredBookmarks = [...bookmarks];
               renderBookmarks();
-              
+
               // 显示使用了缓存的提示
               const bookmarkContainer = document.querySelector('.bookmark-container');
               if (bookmarkContainer) {
@@ -1760,7 +1793,7 @@
               }
             }
           }
-          
+
           // 缓存不可用或已过期，显示错误
           throw new Error('无法从缓存加载');
         } catch (cacheError) {
@@ -1775,14 +1808,14 @@
         }
       }
     }
-    
+
     // 渲染书签
     function renderBookmarks() {
       const bookmarkContent = document.getElementById('bookmark-content');
-      
+
       // 过滤书签
       filterBookmarks();
-      
+
       if (filteredBookmarks.length === 0) {
         bookmarkContent.innerHTML = `
           <div class="bookmark-error" style="color: var(--secondary-text)">
@@ -1792,14 +1825,14 @@
         `;
         return;
       }
-      
+
       // 创建书签HTML
       let bookmarksHTML = '<div class="bookmark-container">';
-      
+
       filteredBookmarks.forEach(bookmark => {
         // 设置默认图标
         const iconClass = bookmark.icon || "fas fa-bookmark";
-        
+
         bookmarksHTML += `
           <a href="${bookmark.url}" target="_blank" class="bookmark-item" data-category="${bookmark.category}">
             <div class="bookmark-icon">
@@ -1812,60 +1845,60 @@
           </a>
         `;
       });
-      
+
       bookmarksHTML += '</div>';
       bookmarkContent.innerHTML = bookmarksHTML;
     }
-    
+
     // 过滤书签
     function filterBookmarks() {
       filteredBookmarks = bookmarks.filter(bookmark => {
         // 分类过滤
         const categoryMatch = currentCategory === 'all' || bookmark.category === currentCategory;
-        
+
         // 搜索过滤
-        const searchMatch = !searchTerm || 
-          bookmark.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        const searchMatch = !searchTerm ||
+          bookmark.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           bookmark.url.toLowerCase().includes(searchTerm.toLowerCase());
-        
+
         return categoryMatch && searchMatch;
       });
     }
-    
+
     // 页面加载完成后初始化书签功能
     document.addEventListener('DOMContentLoaded', initBookmarks);
-    
+
     // 书签抽屉交互
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const toggleBtn = document.getElementById('toggle-bookmark-drawer');
       const closeBtn = document.getElementById('close-bookmark-drawer');
       const drawer = document.getElementById('bookmark-drawer');
       const overlay = document.getElementById('bookmark-overlay');
-      
+
       // 打开抽屉
-      toggleBtn.addEventListener('click', function() {
+      toggleBtn.addEventListener('click', function () {
         drawer.classList.add('open');
         overlay.classList.add('visible');
         document.body.classList.add('drawer-open');
       });
-      
+
       // 关闭抽屉的两种方式
       function closeDrawer() {
         drawer.classList.remove('open');
         overlay.classList.remove('visible');
         document.body.classList.remove('drawer-open');
       }
-      
+
       closeBtn.addEventListener('click', closeDrawer);
       overlay.addEventListener('click', closeDrawer);
-      
+
       // 添加键盘快捷键支持
-      document.addEventListener('keydown', function(event) {
+      document.addEventListener('keydown', function (event) {
         // Escape 键关闭抽屉
         if (event.key === 'Escape' && drawer.classList.contains('open')) {
           closeDrawer();
         }
-        
+
         // Alt + B 打开/关闭书签抽屉
         if (event.altKey && event.key === 'b') {
           if (drawer.classList.contains('open')) {
@@ -1880,4 +1913,5 @@
     });
   </script>
 </body>
-</html> 
+
+</html>
