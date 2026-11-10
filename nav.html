@@ -1179,11 +1179,14 @@
             }
         },
         {
-            name: "VPN配置",
+            name: "代理面板",
             icon: "<i class='fas fa-shield-alt'></i>",
+            // 端口 9090 是 Clash 的 external-controller，secret 要与 vpn/.env 里的
+            // CLASH_SECRET 一致；改过 secret 之后记得同步改这里。
+            display: "192.168.31.123:9090 / 100.114.93.104:9090",
             url: {
-                Local: "http://192.168.31.123:2017",
-                TailScale: "http://100.114.93.104:2017"
+                Local: "http://192.168.31.123:9090/ui/?hostname=192.168.31.123&port=9090&secret=12345678&theme=auto",
+                TailScale: "http://100.114.93.104:9090/ui/?hostname=100.114.93.104&port=9090&secret=12345678&theme=auto"
             }
         },
         {
@@ -1471,7 +1474,7 @@
             card.innerHTML = `
           <div class="card-icon">${site.icon}</div>
           <div class="card-title">${site.name}</div>
-          <div class="card-url">${site.url[currentEnv]}</div>
+          <div class="card-url">${site.display || site.url[currentEnv]}</div>
         `;
 
             cardsContainer.appendChild(card);
